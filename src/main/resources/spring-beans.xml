@@ -1,0 +1,17 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- Tell Spring to automatically create beans if service annotation is found in com.lessons base package -->
+    <context:component-scan base-package="com.lessons" />
+
+    <!-- Setup a spring bean that holds acts as a JDBC Connection Pool of *ONE* connection  -->
+    <bean id="postgresDataSource" class="org.springframework.jdbc.datasource.SingleConnectionDataSource" destroy-method="destroy">
+        <property name="driverClassName"      value="org.postgresql.Driver"/>
+        <property name="url"                  value="jdbc:postgresql://192.168.1.163:5432/postgres"  />
+        <property name="username"             value="postgres" />
+        <property name="password"             value="secret" />
+    </bean>
+</beans>
